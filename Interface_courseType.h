@@ -2,7 +2,7 @@
 class courseType {
     private: std::string CourseName;
     private: std::string CourseID;
-    private: int courseCredite;
+    private: int CourseCredite;
 
     public: void set_course_name(std::string);
             // this function we use to set the course name it take as string
@@ -16,7 +16,7 @@ class courseType {
             // course it should be uniqe and have some id number must be take 
             // care about it see file README.md to see all file
 
-    public: std::string get_course_id_() const;
+    public: std::string get_course_id() const;
             // this function we use to return and the get the value for the 
             // id value it constant and not take any parameter between partness
 
@@ -28,6 +28,10 @@ class courseType {
             //this function we use to set and get and return the value of the course 
             //credite number 
 
+   // public: bool uniqe_course_id() const;
+            // this function we use to cheack if the id is uniqe or not 
+            // it return true if the id is uniqe and false it it is not
+    
     public: courseType();
             // this constructer we use to set the deafult value 
             // the course name and course id set them fo empty 

@@ -28,6 +28,19 @@ project Name : Grade Report
     - set the course name 
     - get the course name
     - set the course number id 
+    * when we set the course it we muse take care about these condition it have some number 
+      must be setting for each college it start as :
+        - IT college           : 145
+        - Medical college      : 189
+        - Engeennering college : 201
+        - Since college        : 204
+        - Licture college      : 072
+        - Lawyer college       : 301
+        - Media college        : 305
+        - Teth Medical college : 312
+        - Nursing college      : 322
+        - Sport college        : 309
+    
     - get the course id
     - set the course credits
     - get the course credits
@@ -36,7 +49,7 @@ project Name : Grade Report
     - deafult constructer  : set the private memmber to deafult value as empty and 0 
     - parameter constrcuter: set the course name, number,id and number in the parmeter
                             this constructer take 3 parameter 2 of them string and last
-                            one is integer value.
+                            one is integer value. 
 
 
     
