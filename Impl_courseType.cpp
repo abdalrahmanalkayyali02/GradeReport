@@ -45,4 +45,5 @@ courseType::courseType(std::string courseName, std::string courseID, int courseC
     set_course_id(courseID);
     set_course_credite(courseCredite);
 }
+
 #endif
