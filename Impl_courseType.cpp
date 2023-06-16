@@ -1,5 +1,6 @@
 #include <iostream>
-#include <string>
+#include <fstream>
+#include <iomanip>
 #ifndef courseType_H
 #define courseType_H
 #include "Interface_courseType.h"
@@ -32,6 +33,20 @@ void courseType::set_course_id(std::string courseID) {
 
 std::string courseType::get_course_id() const {
     return CourseID;
+} 
+
+void courseType::print(std::ostream& outfile) {
+    // print in the file 
+    outfile << std::setw(30) <<  std::setfill('*') << " "  << std::endl;
+    outfile << "Course Name    : " << CourseName    << std::endl;
+    outfile << "Course ID      : " << CourseID      << std::endl;
+    outfile << "Course Credite : " << CourseCredite << std::endl;
+
+    // print in the secreen to the use
+    std::cout << std::setw(30) << std::left << std::setfill('*') << " " << std::endl;
+    std::cout << "Course Name    : " << CourseName    << std::endl;
+    std::cout << "Course ID      : " << CourseID      << std::endl;
+    std::cout << "Course Credite : " << CourseCredite << std::endl;
 }
 
 courseType::courseType() {

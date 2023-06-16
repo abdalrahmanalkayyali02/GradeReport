@@ -1,4 +1,6 @@
 #include <string>
+#include <fstream>
+
 class courseType {
     private: std::string CourseName;
     private: std::string CourseID;
@@ -28,10 +30,10 @@ class courseType {
             //this function we use to set and get and return the value of the course 
             //credite number 
 
-   // public: bool uniqe_course_id() const;
-            // this function we use to cheack if the id is uniqe or not 
-            // it return true if the id is uniqe and false it it is not
-    
+    public: void print(std::ostream&);
+            //this function we use to print the course detail in the file using 
+            //file stream and print the course detatil for use 
+
     public: courseType();
             // this constructer we use to set the deafult value 
             // the course name and course id set them fo empty 
