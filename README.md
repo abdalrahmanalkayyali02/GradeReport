@@ -23,7 +23,7 @@ project Name : Grade Report
     - course name string
     - course number string
     - course credits int
-
+    - numebr for course credite int static 
     - public memmber : 
     - set the course name 
     - get the course name
@@ -44,13 +44,14 @@ project Name : Grade Report
     - get the course id
     - set the course credits
     - get the course credits
+    - print the course detail void 
     
     - constructer: 
     - deafult constructer  : set the private memmber to deafult value as empty and 0 
     - parameter constrcuter: set the course name, number,id and number in the parmeter
                             this constructer take 3 parameter 2 of them string and last
                             one is integer value. 
-
-
+    
+- class finaceType
     
 
