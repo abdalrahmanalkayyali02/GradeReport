@@ -27,16 +27,13 @@ int courseType::get_course_credite() const {
     return CourseCredite;
 }
 
-void courseType::set_course_id(std::string courseID) { 
-    CourseID = courseID;
-}
-
-std::string courseType::get_course_id() const {
+int courseType::get_course_id() const {
     return CourseID;
 } 
 
-void courseType::print(std::ostream& outfile) {
+void courseType::print(std::ofstream& outfile) {
     // print in the file 
+    outfile.open("OutFile.txt",std::ios::app);
     outfile << std::setw(30) <<  std::setfill('*') << " "  << std::endl;
     outfile << "Course Name    : " << CourseName    << std::endl;
     outfile << "Course ID      : " << CourseID      << std::endl;
@@ -47,17 +44,28 @@ void courseType::print(std::ostream& outfile) {
     std::cout << "Course Name    : " << CourseName    << std::endl;
     std::cout << "Course ID      : " << CourseID      << std::endl;
     std::cout << "Course Credite : " << CourseCredite << std::endl;
-}
+    outfile.close();
+
+    std::string line;
+    std::ifstream inputFile;
+    inputFile.open("outFile.txt");
+    if (inputFile.is_open()) {
+        while (inputFile) {
+            std::getline (inputFile, line);
+            std::cout << line << '\n';
+        } 
+    } else {
+        std::cout << "Couldn't open file\n";
+    }
+} 
 
 courseType::courseType() {
     CourseName    = " ";
-    CourseID      = " ";
     CourseCredite = 1  ;
 } 
 
-courseType::courseType(std::string courseName, std::string courseID, int courseCredite) {
+courseType::courseType(std::string courseName, int courseCredite) {
     set_course_name(courseName);
-    set_course_id(courseID);
     set_course_credite(courseCredite);
 }
 
