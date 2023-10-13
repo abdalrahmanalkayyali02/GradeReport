@@ -64,7 +64,7 @@ courseType::courseType() {
     CourseCredite = 1  ;
 } 
 
-courseType::courseType(std::string courseName, int courseCredite) {
+courseType::courseType(std::string courseName, int courseCredite, int courseID) {
     set_course_name(courseName);
     set_course_credite(courseCredite);
 }
