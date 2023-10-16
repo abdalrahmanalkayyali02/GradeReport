@@ -1,9 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <iomanip>
-#ifndef courseType_H
-#define courseType_H
 #include "Interface_courseType.h"
+
 
 void courseType::set_course_name(std::string courseName) {
     CourseName = courseName;
@@ -23,13 +22,13 @@ void courseType::set_course_credite(int courseCredite) {
     }
 } 
 
+void courseType::set_course_id(std::string id) {
+    CourseID = id;
+}
+
 int courseType::get_course_credite() const {
     return CourseCredite;
 }
-
-int courseType::get_course_id() const {
-    return CourseID;
-} 
 
 void courseType::print(std::ofstream& outfile) {
     // print in the file 
@@ -61,12 +60,13 @@ void courseType::print(std::ofstream& outfile) {
 
 courseType::courseType() {
     CourseName    = " ";
-    CourseCredite = 1  ;
+    CourseCredite = 1;
+    CourseID = " ";
 } 
 
-courseType::courseType(std::string courseName, int courseCredite, int courseID) {
+courseType::courseType(std::string courseName, std::string id, int courseCredite)  {
     set_course_name(courseName);
     set_course_credite(courseCredite);
+    set_course_id(id);
 }
 
-#endif

@@ -26,6 +26,12 @@ class personType {
     public: std::string get_last_name () const;
             // this function we use it to return the the middle name value 
 
+    public: void setInfo(std::string, std::string, std::string);
+           // This function we use to set the the info first, middle and last name 
+
+    public: void print() const;
+                // print the data for the perosn first name, middle name , and last name 
+    
     public: personType (std::string, std::string, std::string);
             // this is the constructer its do as the the setter for first,
             // secound and middle name do 

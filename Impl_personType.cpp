@@ -1,7 +1,5 @@
 #include <iostream>
 #include <string>
-#ifndef personType_H
-#define personType_H
 #include "Interface_personType.h"
 
 void personType::set_first_name(std::string firstName) {
@@ -22,11 +20,23 @@ std::string personType::get_secound_name() const {
 
 void personType::set_last_name(std::string lastName) {
     LastName = lastName;
-}
+} 
 
 std::string personType::get_last_name() const {
     return LastName;
 } 
+
+void personType::setInfo(std::string firstName, std::string secoundName, std::string lastName) {
+    set_first_name(firstName);
+    set_secound_name(secoundName);
+    set_last_name(lastName);
+}
+
+void personType::print() const {
+    std::cout << "First  Name : " << FirstName   << std::endl;
+    std::cout << "Middle Name : " << SecoundName << std::endl;
+    std::cout << "Last Name : "   << LastName    << std::endl;
+}
 
 personType::personType() {
     FirstName = " ";
@@ -39,5 +49,3 @@ personType::personType(std::string firstName, std::string secoundName, std::stri
     set_secound_name(secoundName);
     set_last_name(lastName);
 }
-
-#endif
