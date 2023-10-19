@@ -30,19 +30,41 @@ int courseType::get_course_credite() const {
     return CourseCredite;
 }
 
-void courseType::print(std::ofstream& outfile) {
-    // print in the file 
-    outfile.open("OutFile.txt",std::ios::app);
-    outfile << std::setw(30) <<  std::setfill('*') << " "  << std::endl;
-    outfile << "Course Name    : " << CourseName    << std::endl;
-    outfile << "Course ID      : " << CourseID      << std::endl;
-    outfile << "Course Credite : " << CourseCredite << std::endl;
+void courseType::set_courseMark(float marks) {
+    if((marks >= 0) && (marks <= 100)) {
+        CourseMarks = marks;
+    } else {
+        CourseMarks = 0;
+    }
+} 
 
-    // print in the secreen to the use
-    std::cout << std::setw(30) << std::left << std::setfill('*') << " " << std::endl;
-    std::cout << "Course Name    : " << CourseName    << std::endl;
-    std::cout << "Course ID      : " << CourseID      << std::endl;
-    std::cout << "Course Credite : " << CourseCredite << std::endl;
+float courseType::get_CourseMarks() const {
+    return CourseMarks;
+}
+
+char courseType::get_Grade() const {
+    if (CourseMarks < 50) {
+        return 'F';
+    } else if ((CourseMarks >= 50) && (CourseMarks < 60)) {
+        return 'D';
+    } else if ((CourseMarks >= 60) && (CourseMarks < 70)) {
+        return 'C';
+    } else if ((CourseMarks >= 70) && (CourseMarks < 80)) {
+        return 'B';
+    } else {
+        return 'A';
+    }   
+}
+
+
+void courseType::printFile(std::ofstream& outfile) {
+    // print in the file 
+    outfile.open("outFile.txt",std::ios::app);
+    outfile << std::setw(30) <<  std::setfill('*') << " "  << std::endl;
+    outfile << " Course Name    : " << CourseName    << std::endl;
+    outfile << " Course ID      : " << CourseID      << std::endl;
+    outfile << " Course Credite : " << CourseCredite << std::endl;
+    outfile << " Course Grade   : " << CourseGrade   << std::endl;
     outfile.close();
 
     std::string line;
@@ -58,10 +80,21 @@ void courseType::print(std::ofstream& outfile) {
     }
 } 
 
+void courseType::print() {
+    std::cout << std::setw(30) << std::left << std::setfill('*') << " " << std::endl;
+    std::cout << " Course Name    : " << CourseName    << std::endl;
+    std::cout << " Course ID      : " << CourseID      << std::endl;
+    std::cout << " Course Credite : " << CourseCredite << std::endl;
+    std::cout << " Course Grade   : " << CourseGrade   << std::endl;
+}
+
+
 courseType::courseType() {
     CourseName    = " ";
     CourseCredite = 1;
     CourseID = " ";
+    CourseMarks = 0;
+    CourseGrade = 'F';
 } 
 
 courseType::courseType(std::string courseName, std::string id, int courseCredite)  {

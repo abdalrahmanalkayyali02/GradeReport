@@ -1,9 +1,8 @@
-#include <iostream>
 #include "Interface_courseType.h"
 
 class finaceType : public courseType {
     private: float money_on_hand;
-    private: courseType courses[];
+    private: courseType courses[6];
 
     public: void Accept_money(float);
         // This function of the class is modefay we can edite it data its take the money that user 

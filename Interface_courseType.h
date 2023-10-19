@@ -5,6 +5,8 @@ class courseType {
     private: std::string CourseName;
     private: std::string CourseID;
     private: int CourseCredite;
+    private: float CourseMarks;
+    private: char CourseGrade;
 
     public: void set_course_name(std::string);
             // this function we use to set the course name it take as string
@@ -17,7 +19,7 @@ class courseType {
            // this function for set the course id it make as string in the 
            // parameter 
     
-    public: std::string get_course_id();
+    public: std::string get_course_id() const;
             // this function we use to return and the get the value for the 
             // id value it constant and not take any parameter between partness
 
@@ -29,12 +31,21 @@ class courseType {
             //this function we use to set and get and return the value of the course 
             //credite number 
 
-    //public: static void print();
-            // This function is used to prin the course ID which its static 
+    public: void set_courseMark(float);
+            // This function is used to set the course marks
 
-    public: void print(std::ofstream&);
+    public: float get_CourseMarks() const;
+            // This function is used to return the marks value 
+
+    public: char get_Grade() const;
+            // This function is used to ge the grade 
+
+    public: void printFile(std::ofstream&);
             //this function we use to print the course detail in the file using 
             //file stream and print the course detatil for use 
+    
+    public: void print();
+            // this function use to print the course detail to the screen 
 
     public: courseType();
             // this constructer we use to set the deafult value 

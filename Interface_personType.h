@@ -32,6 +32,9 @@ class personType {
     public: void print() const;
                 // print the data for the perosn first name, middle name , and last name 
     
+    public: void print_FullName() const;
+                // This function for print the person data full name 
+
     public: personType (std::string, std::string, std::string);
             // this is the constructer its do as the the setter for first,
             // secound and middle name do 
