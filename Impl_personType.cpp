@@ -38,8 +38,10 @@ void personType::print() const {
     std::cout << "Last Name : "   << LastName    << std::endl;
 }
 
-void personType::print_FullName() const {
-    std::cout << FirstName << " " << SecoundName << " " << LastName << std::endl;
+std::string personType::get_FullName() const {
+    std::string Name;
+    Name = FirstName + " " + SecoundName + " " + LastName;
+    return Name;
 }
 
 personType::personType() {

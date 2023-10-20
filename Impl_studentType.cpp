@@ -8,49 +8,91 @@
 int studentType::studentID = 202310000; 
 
 void studentType::setInfo(std::string Fname, std::string Mname, std::string Lname, int NumberOfCourse, bool is_paied, courseType course[], char grade []) {
-        if (NumberOfCourse > 0) {
-            numberOfCourse = NumberOfCourse;
-        } else {
-            numberOfCourse = 1;
-        }
+    if (NumberOfCourse > 0) {
+        numberOfCourse = NumberOfCourse;
+    } else {
+        numberOfCourse = 1;
+    }
 
-        course[NumberOfCourse];
-        grade[NumberOfCourse];                  
-        personType::setInfo(Fname, Mname, Lname); // for set the name first, middle, and last name 
-        is_paied = finaceType::is_enought(course);// for set the paied value 
+    course[NumberOfCourse];
+    grade[NumberOfCourse];                  
+    personType::setInfo(Fname, Mname, Lname); // for set the name first, middle, and last name 
+    is_paied = finaceType::is_enought(course);// for set the paied value 
 }
 
-void studentType::printFile(std::ofstream outFile, double GPA) {
-    outFile.open("outFile.txt");
-    outFile   << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"
-              << std::setw(100) << std::left << std::setfill(' ') << "Student Name: " << personType::print_FullName()
-              << std::setw(100) << std::left << std::setfill(' ') << "Number of courses enrolled: " << numberOfCourse
-              << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << studentID << "\n\n"
+double studentType::get_GPA(courseType course[], int number_of_course) const { 
+    double sum = 0;
+    double total = 0;
+    for (int i = 0; i < number_of_course; i++) {
+        sum =+ course[i].getGradeValue();
+    } 
+    total = sum/number_of_course;
+    return total;    
+}
 
-              << std::setw(25)  << std::left << std::setfill(' ') << "Course No "
-              << std::setw(25)  << std::left << std::setfill(' ') << "Course Name " 
-              << std::setw(25)  << std::left << std::setfill(' ') << "Credite"
-              << std::setw(25)  << std::left << std::setfill(' ') << "Grade" << "\n";
+void studentType::printFile(std::ofstream& outFile, courseType courses[], int course_size) {
+
+    outFile.open("outFile.txt");
+
+    outFile   << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"
+        << std::setw(100) << std::left << std::setfill(' ') << "Student Name: " << personType::get_FullName()
+        << std::setw(100) << std::left << std::setfill(' ') << "Number of courses enrolled: " << numberOfCourse
+        << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << studentID << "\n\n"
+
+        << std::setw(25)  << std::left << std::setfill(' ') << "Course No "
+        << std::setw(25)  << std::left << std::setfill(' ') << "Course Name " 
+        << std::setw(25)  << std::left << std::setfill(' ') << "Credite"
+        << std::setw(25)  << std::left << std::setfill(' ') << "Grade" << "\n";
 
     for (int i = 0; i < numberOfCourse; i++) {
-        outFile << std::setw(25) << std::left << std::setfill(' ') << courseType::get_course_id() 
-                << std::setw(25) << std::left << std::setfill(' ') << courseType::get_course_name()
-                << std::setw(25) << std::left << std::setfill(' ') << courseType::get_course_credite()
-                << std::setw(25) << std::left << std::setfill(' ') << courseType::get_Grade() << "\n";
+        outFile << std::setw(25) << std::left << std::setfill(' ') << courses[i].get_course_id() 
+            << std::setw(25) << std::left << std::setfill(' ') << courses[i].get_course_name()
+            << std::setw(25) << std::left << std::setfill(' ') << courses[i].get_course_credite()
+            << std::setw(25) << std::left << std::setfill(' ') << courses[i].getGradeValue() << "\n";
     } 
-        outFile << "Total number of credit hours: " << finaceType::Total_HourCredite(course);
-        if(is_paied == true) {
-            outFile << "Mid-Semester GPA: " << 
-        }
+    outFile << "Total number of credit hours: " << finaceType::Total_HourCredite(courses);
 
+    if(isTutationPaied == true) {
+        outFile << "Mid-Semester GPA: " << get_GPA(courses, course_size) << "\n";
+    } 
+
+    outFile     << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n";
+}  
+
+void studentType::print(courseType courses[], int course_size) const {
+
+    std::cout << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"
+        << std::setw(100) << std::left << std::setfill(' ') << "Student Name: " << personType::get_FullName()
+        << std::setw(100) << std::left << std::setfill(' ') << "Number of courses enrolled: " << numberOfCourse
+        << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << studentID << "\n\n"
+
+        << std::setw(25)  << std::left << std::setfill(' ') << "Course No "
+        << std::setw(25)  << std::left << std::setfill(' ') << "Course Name " 
+        << std::setw(25)  << std::left << std::setfill(' ') << "Credite"
+        << std::setw(25)  << std::left << std::setfill(' ') << "Grade" << "\n";
+
+    for (int i = 0; i < numberOfCourse; i++) {
+        std::cout  << std::setw(25) << std::left << std::setfill(' ') << courses[i].get_course_id() 
+            << std::setw(25) << std::left << std::setfill(' ') << courses[i].get_course_name()
+            << std::setw(25) << std::left << std::setfill(' ') << courses[i].get_course_credite()
+            << std::setw(25) << std::left << std::setfill(' ') << courses[i].getGradeValue() << "\n";
+    }  
+    std::cout   << "Total number of credit hours: " << finaceType::Total_HourCredite(courses);
+
+    if(isTutationPaied == true) {
+        std::cout  << "Mid-Semester GPA: " << get_GPA(courses, course_size) << "\n";
+    } 
+    std::cout  << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n";
+}  
+
+void studentType::printID() {
+    std::cout << studentID << std::endl;
 }
 
 studentType::studentType() {
     numberOfCourse = 1;
     studentID++;
 }
-
-    
 
 #endif
 

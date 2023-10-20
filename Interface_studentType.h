@@ -20,11 +20,11 @@ class studentType : public personType , finaceType {
             5- courses data
             6- courses grade */ 
     
-    public: void printFile(std::ofstream&, double);
+    public: void printFile(std::ofstream&,courseType[], int);
         // This function for show the out put as report and show the GPA
         // print all data in print function as file 
     
-    public: void print(double) const;
+    public: void print(courseType[], int) const;
         // This function is used for for print all data as :
         // course ID 
         // course Name
@@ -36,12 +36,12 @@ class studentType : public personType , finaceType {
         // student ID
         // number of course enrolled
     
-    public: int get_HourEnrolled() const;
-        // get the hour enrolled for the all course 
-    
-    public: double get_GPA() const;
+    public: double get_GPA(courseType[], int) const;
         // calclate the total GPA for all course
     
+    public: static void printID();
+        // theis function is used for print the id for student id 
+
     public: studentType();
         //deafult constructer
     

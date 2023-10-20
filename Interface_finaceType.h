@@ -11,7 +11,7 @@ class finaceType : public courseType {
     public: float get_accept_money() const;
         // this function we use to get the accept money value with no medefecation for the data
     
-    public: double Total_HourCredite(courseType[]) const;
+    public: int Total_HourCredite(courseType[]) const;
         // This function for return the total nuber of the hour for all course and help us to calucalte 
         // The total fiance for student 
 
@@ -26,4 +26,6 @@ class finaceType : public courseType {
     public: bool is_owns(courseType[]) const;
         // This function we use to return if the user give the money more than total or cost if yse return 1 
         // else we will return false
+    public: finaceType();
+        // deafult constructer
 };

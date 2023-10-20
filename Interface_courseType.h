@@ -7,6 +7,7 @@ class courseType {
     private: int CourseCredite;
     private: float CourseMarks;
     private: char CourseGrade;
+    private: float GradeValue;
 
     public: void set_course_name(std::string);
             // this function we use to set the course name it take as string
@@ -37,16 +38,24 @@ class courseType {
     public: float get_CourseMarks() const;
             // This function is used to return the marks value 
 
-    public: char get_Grade() const;
+    public: void get_Grade(float);
             // This function is used to ge the grade 
+    
+    private: void MergeGrade(char , char);
+             // This function is used to merge two char value 
+
+    public: float getGradeValue() const;
+            // This function is used to return the grade value
 
     public: void printFile(std::ofstream&);
+             // This function is used to return the grade value 
+             // This function is used to return the grade value 
             //this function we use to print the course detail in the file using 
             //file stream and print the course detatil for use 
     
     public: void print();
             // this function use to print the course detail to the screen 
-
+    
     public: courseType();
             // this constructer we use to set the deafult value 
             // the course name and course id set them fo empty 

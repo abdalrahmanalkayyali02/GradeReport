@@ -32,7 +32,7 @@ class personType {
     public: void print() const;
                 // print the data for the perosn first name, middle name , and last name 
     
-    public: void print_FullName() const;
+    public: std::string get_FullName() const;
                 // This function for print the person data full name 
 
     public: personType (std::string, std::string, std::string);
