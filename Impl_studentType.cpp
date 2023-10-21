@@ -5,15 +5,26 @@
 #define studentType_H
 #include "Interface_studentType.h"
 
-int studentType::studentID = 202310000; 
+int studentType::studentID = 202310001; 
+
+void studentType::set_NumberOfCourse(int number_of_course) {
+
+    if ((number_of_course > 0) && (number_of_course <= 6)) {
+        numberOfCourse = number_of_course;
+    } else if (number_of_course < 0) {
+        numberOfCourse = 1;
+    } else {
+        numberOfCourse = 6;
+    }
+}
+
+int studentType::get_NumberOfCourse() const {
+    return numberOfCourse;
+}
 
 void studentType::setInfo(std::string Fname, std::string Mname, std::string Lname, int NumberOfCourse, bool is_paied, courseType course[], char grade []) {
-    if (NumberOfCourse > 0) {
-        numberOfCourse = NumberOfCourse;
-    } else {
-        numberOfCourse = 1;
-    }
 
+    set_NumberOfCourse(NumberOfCourse);
     course[NumberOfCourse];
     grade[NumberOfCourse];                  
     personType::setInfo(Fname, Mname, Lname); // for set the name first, middle, and last name 
@@ -21,8 +32,12 @@ void studentType::setInfo(std::string Fname, std::string Mname, std::string Lnam
 }
 
 double studentType::get_GPA(courseType course[], int number_of_course) const { 
+
     double sum = 0;
     double total = 0;
+
+    set_NumberOfCourse(number_of_course);
+
     for (int i = 0; i < number_of_course; i++) {
         sum =+ course[i].getGradeValue();
     } 
@@ -33,11 +48,12 @@ double studentType::get_GPA(courseType course[], int number_of_course) const {
 void studentType::printFile(std::ofstream& outFile, courseType courses[], int course_size) {
 
     outFile.open("outFile.txt");
+    set_NumberOfCourse(course_size);
 
     outFile   << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"
         << std::setw(100) << std::left << std::setfill(' ') << "Student Name: " << personType::get_FullName()
         << std::setw(100) << std::left << std::setfill(' ') << "Number of courses enrolled: " << numberOfCourse
-        << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << studentID << "\n\n"
+        << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << ID << "\n\n"
 
         << std::setw(25)  << std::left << std::setfill(' ') << "Course No "
         << std::setw(25)  << std::left << std::setfill(' ') << "Course Name " 
@@ -60,11 +76,14 @@ void studentType::printFile(std::ofstream& outFile, courseType courses[], int co
 }  
 
 void studentType::print(courseType courses[], int course_size) const {
-
-    std::cout << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"
+    
+        set_NumberOfCourse(course_size);
+        
+        std::cout 
+        << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"
         << std::setw(100) << std::left << std::setfill(' ') << "Student Name: " << personType::get_FullName()
         << std::setw(100) << std::left << std::setfill(' ') << "Number of courses enrolled: " << numberOfCourse
-        << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << studentID << "\n\n"
+        << std::setw(100) << std::left << std::setfill(' ') << "Student ID: " << ID << "\n\n"
 
         << std::setw(25)  << std::left << std::setfill(' ') << "Course No "
         << std::setw(25)  << std::left << std::setfill(' ') << "Course Name " 
@@ -89,8 +108,13 @@ void studentType::printID() {
     std::cout << studentID << std::endl;
 }
 
+int studentType::getID() const {
+    return ID;
+}
+
 studentType::studentType() {
     numberOfCourse = 1;
+    ID = studentID;
     studentID++;
 }
 
