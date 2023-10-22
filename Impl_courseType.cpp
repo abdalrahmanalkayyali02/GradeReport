@@ -46,75 +46,98 @@ float courseType::get_CourseMarks() const {
     return CourseMarks;
 } 
 
-void courseType::MergeGrade(char grade1, char grade2)  {
-    std::cout << grade1 << grade2 << std::endl;
-}
+float courseType::getGradeValue() const {
 
-void courseType::get_Grade(float gradeValue) {
-
-    if (CourseMarks >= 90) {
-        MergeGrade(' ','A');
-        GradeValue = 4;
+    float grade_value;
+    if ((CourseMarks > 85) && (CourseMarks <= 100)) {
+        grade_value = 4;
 
     } else if ((CourseMarks > 80) && (CourseMarks <= 85)) {
-        MergeGrade('-','A');
-        GradeValue = 3.75;
+        //MergeGrade('-','A');
+        grade_value = 3.75;
 
     } else if ((CourseMarks > 75) && (CourseMarks <= 80)) {
-        MergeGrade('+','B');
-        GradeValue = 3.5;
+        //MergeGrade('+','B');
+        grade_value = 3.5;
 
     } else if ((CourseMarks > 70) && (CourseMarks <= 75)) {
-        MergeGrade(' ','B');
-        GradeValue = 3;
+        //MergeGrade(' ','B');
+        grade_value = 3;
 
     } else if ((CourseMarks > 65) && (CourseMarks <= 70)) {
-        MergeGrade('-','B');
-        GradeValue = 2.75;
+        //MergeGrade('-','B');
+        grade_value = 2.75;
 
     } else if ((CourseMarks > 60) && (CourseMarks <= 65)) {
-        MergeGrade('+','C');
-        GradeValue = 2.5;
+        //MergeGrade('+','C');
+        grade_value = 2.5;
 
     } else if ((CourseMarks > 55) && (CourseMarks <= 60)) {
-        MergeGrade(' ','C');
-        GradeValue = 2;
+        //MergeGrade(' ','C');
+        grade_value = 2;
 
     } else if ((CourseMarks > 50) && (CourseMarks <= 55)) {
-        MergeGrade('-','C');
-        GradeValue = 1.75;
+        //MergeGrade('-','C');
+        grade_value = 1.75;
 
     } else if ((CourseMarks > 45) && (CourseMarks <= 50)) {
-        MergeGrade('+','D');
-        GradeValue = 1.5;
+        //MergeGrade('+','D');
+        grade_value = 1.5;
 
     } else if ((CourseMarks > 40) && (CourseMarks <= 45)) {
-        MergeGrade(' ','D');
-        GradeValue = 1;
+        //MergeGrade(' ','D');
+        grade_value = 1;
 
     } else if ((CourseMarks > 35) && (CourseMarks <= 40)) {
-        MergeGrade('-','D');
-        GradeValue = 0.75;
+        //MergeGrade('-','D');
+        grade_value = 0.75;
 
     } else if (CourseMarks <= 30) {
-        MergeGrade(' ','F');
-        GradeValue = 0;
-    }   
+        //MergeGrade(' ','F');
+        grade_value = 0;
+    } 
+        return grade_value;  
 }
 
-float courseType::getGradeValue() const {
-    return GradeValue;
-}
+std::string courseType::get_Grade() const { 
+    std::string str;
+    if(getGradeValue() == 4) {
+        str = "A";
+    } else if (getGradeValue() == 3.75) {
+        str = "A-";
+    } else if (getGradeValue() == 3.5) {
+        str = "B+";
+    } else if (getGradeValue() == 3) {
+        str = "B";
+    } else if (getGradeValue() == 2.75) {
+        str = "B-";
+    } else if (getGradeValue() == 2.5) {
+        str = "C+";
+    } else if (getGradeValue() == 2) {
+        str = "C";
+    } else if (getGradeValue() == 1.75) {
+        str = "C-";
+    } else if (getGradeValue() == 1.5) {
+        str = "D+";
+    } else if (getGradeValue() == 1) {
+        str = "D";
+    } else if (getGradeValue() == 0.75) {
+        str = "D-";
+    } else {
+        str = "F";
+    } 
+        return str;
+}  
 
 void courseType::printFile(std::ofstream& outfile) {
     // print in the file 
     outfile.open("outFile.txt",std::ios::app);
-    outfile << std::setw(30) <<  std::setfill('*') << " "  << std::endl;
-    outfile << " Course Name    : " << CourseName    << std::endl;
-    outfile << " Course ID      : " << CourseID      << std::endl;
-    outfile << " Course Credite : " << CourseCredite << std::endl;
-    outfile << " Course Grade   : " << CourseGrade   << std::endl;
-    outfile << " Course Value   : " << GradeValue    << std::endl;
+    outfile << std::setw(30) <<  std::setfill('*')     << " "  << std::endl;
+    outfile << " Course Name    : " << CourseName      << std::endl;
+    outfile << " Course ID      : " << CourseID        << std::endl;
+    outfile << " Course Credite : " << CourseCredite   << std::endl;
+    outfile << " Course Grade   : " << CourseGrade     << std::endl;
+    outfile << " Course Value   : " << get_Grade() << std::endl;
     outfile.close();
 
     std::string line;
@@ -132,11 +155,11 @@ void courseType::printFile(std::ofstream& outfile) {
 
 void courseType::print() {
     std::cout << std::setw(30) << std::left << std::setfill('*') << " " << std::endl;
-    std::cout << " Course Name    : " << CourseName    << std::endl;
-    std::cout << " Course ID      : " << CourseID      << std::endl;
-    std::cout << " Course Credite : " << CourseCredite << std::endl;
-    std::cout << " Course Grade   : " << CourseGrade   << std::endl;
-    std::cout << " Course Value   : " << GradeValue    << std::endl;
+    std::cout << " Course Name    : " << CourseName      << std::endl;
+    std::cout << " Course ID      : " << CourseID        << std::endl;
+    std::cout << " Course Credite : " << CourseCredite   << std::endl;
+    std::cout << " Course Grade   : " << CourseGrade     << std::endl;
+    std::cout << " Course Value   : " << get_Grade() << std::endl;
 }
 
 
