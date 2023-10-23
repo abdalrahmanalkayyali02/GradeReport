@@ -20,29 +20,52 @@ void studentType::set_NumberOfCourse(int number_of_course) {
 
 int studentType::get_NumberOfCourse() const {
     return numberOfCourse;
+} 
+
+void studentType::Accept_money(float paid_moeny) {
+    if(paid_moeny > 0) {
+        money_on_hand = paid_moeny;
+    } else {
+        paid_moeny = 0;
+    }
+} 
+
+float studentType::get_accept_money() const {
+    return money_on_hand;
+} 
+
+bool studentType::is_enought(courseType coursess[]) const {
+    coursess[get_NumberOfCourse()];
+    return (money_on_hand >= Total(coursess));
+} 
+
+bool studentType::is_owns(courseType coursess[]) const {
+    coursess[get_NumberOfCourse()];
+    return (money_on_hand > Total(coursess));
+} 
+
+double studentType::Debtor(courseType course[]) const {
+    course[get_NumberOfCourse()];
+    float debtor = 0;
+    if (Total(course) > get_accept_money()) {
+        debtor = Total(course) - get_accept_money();
+    }   
+    return debtor;
 }
 
 void studentType::setInfo(std::string Fname, std::string Mname, std::string Lname, int NumberOfCourse, courseType course[]) {
 
-int    set_NumberOfCourse(NumberOfCourse); // set number of the course
+set_NumberOfCourse(NumberOfCourse); // set number of the course
 
     personType::setInfo(Fname, Mname, Lname); // Set first, middle, and last name 
-
-   /* for (int i = 0; i < numberOfCourse; i++) {
-        course[i].set_courseMark(0); // Initialize course marks to 0
-        grade[i] = ' ';
-    }
-
-    is_paied = finaceType::is_enought(course, get_NumberOfCourse()); */ 
 }
 
-double studentType::get_GPA(courseType course[]) const { 
-    double sum = 0;
-    course[get_NumberOfCourse()];
+double studentType::get_GPA(courseType course[]) const {  
+    float total_point = 0;
     for (int i = 0; i < get_NumberOfCourse(); i++) {
-        sum += course[i].getGradeValue();
-    }
-        return sum / get_NumberOfCourse();    
+        total_point +=  course[i].getGradeValue() * course[i].get_course_credite();
+    }  
+        return (total_point / Total_CourseHour(course));
 }
 
 int studentType::Total_CourseHour(courseType course[]) const {
@@ -52,6 +75,15 @@ int studentType::Total_CourseHour(courseType course[]) const {
             sum+= course[i].get_course_credite();
         } 
             return sum;
+}
+
+double studentType::Total(courseType course[]) const { 
+    course[get_NumberOfCourse()];
+    return (45 + (Total_CourseHour(course)) + 90);
+}
+
+int studentType::getID() const {
+    return ID;
 }
 
 void studentType::printFile(std::ofstream& outFile, courseType courses[]) const {
@@ -80,19 +112,13 @@ void studentType::printFile(std::ofstream& outFile, courseType courses[]) const 
     outFile  << std::endl;
     outFile  << "Total number of credit hours: " << Total_CourseHour(courses) << std::endl;
 
- /*   if (finaceType::is_owns(courses, numberOfCourse)) {
-        outFile << "\nThe Rest of student money is = " << finaceType::Rest_of_Money(courses, numberOfCourse) << std::endl;
-    }   
-
-    if (isTutationPaied) {
-        outFile << "Mid-Semester GPA: " << get_GPA(courses, course_size) << "\n"; 
-    }  else {
-        outFile << "*** Grades are being held for not paying the tuition. *** \n"
-                << "Amount Due: $" << finaceType::Debtor(courses, numberOfCourse) << "\n";
-    } 
-
-    outFile << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n";
-                                                                                            */ 
+    if (is_enought (courses) == true) {
+         outFile  << "The GPA = " << get_GPA(courses) << std::endl;
+        }  else {
+            outFile  << "*** Grades are being held for not paying the tuition. *** \n";
+            outFile  << "Amount Due: $" << Debtor(courses) << "\n";
+        }   outFile  << std::setw(80) << std::left << std::setfill('*') << " " << "\n"; 
+    
     outFile.close(); // Close the file after writing */ 
 }    
 
@@ -123,29 +149,18 @@ void studentType::print(courseType courses[]) const {
     std::cout  << std::setw(80) << std::left << std::setfill('*') << " " << "\n";
     std::cout  << std::endl;
     std::cout  << "Total number of credit hours: " << Total_CourseHour(courses) << std::endl;
-    
-    /*
-    if (finaceType::is_owns(courses, numberOfCourse)) {
-        std::cout << "\n The Rest of student money is = " << finaceType::Rest_of_Money(courses, numberOfCourse) << std::endl;
-    }   
 
-    if (isTutationPaied) {
-        std::cout  << "Mid-Semester GPA: " << get_GPA(courses, course_size) << "\n";
+    if (is_enought (courses) == true) {
+        std::cout  << "The GPA = " << get_GPA(courses) << std::endl;
     } else {
-        std::cout  << "*** Grades are being held for not paying the tuition. *** \n"
-                << "Amount Due: $" << finaceType::Debtor(courses, numberOfCourse) << "\n";
-    }
-
-    std::cout  << std::setw(100) << std::left << std::setfill('*') << " " << "\n\n"; */  
+          std::cout  << "*** Grades are being held for not paying the tuition. *** \n";
+          std::cout  << "Amount Due: $" << Debtor(courses) << "\n";
+    }     std::cout  << std::setw(80) << std::left << std::setfill('*') << " " << "\n"; 
+    
 }
 
-void studentType::printID() {
-    std::cout << studentID << std::endl;
-}
 
-int studentType::getID() const {
-    return ID;
-}
+
 
 studentType::studentType() {
     numberOfCourse = 1;
