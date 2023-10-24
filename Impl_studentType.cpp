@@ -48,7 +48,7 @@ double studentType::Debtor(courseType course[]) const {
     course[get_NumberOfCourse()];
     float debtor = 0;
     if (Total(course) > get_accept_money()) {
-        debtor = Total(course) - get_accept_money();
+        debtor = get_accept_money() - Total(course); 
     }   
     return debtor;
 }
@@ -79,7 +79,7 @@ int studentType::Total_CourseHour(courseType course[]) const {
 
 double studentType::Total(courseType course[]) const { 
     course[get_NumberOfCourse()];
-    return (45 + (Total_CourseHour(course)) + 90);
+    return (45 * (Total_CourseHour(course)) + 90);
 }
 
 int studentType::getID() const {
